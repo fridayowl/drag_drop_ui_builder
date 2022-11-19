@@ -5,14 +5,9 @@ import { saveAs } from 'file-saver';
 const App = () => {
   const [count, setcount] = useState(1);
   const [tab, setTab] = useState("elm");
-
-  const [active, setActive] = useState({
-    col: true,
-    p: true,
-    heading: true,
-    button: true,
-  });
-
+  const [edit, setEdit] = useState();
+  const [styles, setStyle] = useState([]);
+  console.log(styles)
   // function getAppliedSelectors(node) {
   //   var selectors = [];
 
@@ -64,37 +59,6 @@ const App = () => {
       width: 100%;
       height: 100%;
     }
-
-.hm_col-3 {
-    font-size: ${data.size}px;
-    hm_color: ${data.color};
-    background: ${data.background};
-    padding: ${data.padding_top}px ${data.padding_right}px ${data.padding_bottom}px ${data.padding_left}px;
-    text-align: ${data.textAlign};
-  }
-
-.hm_heading {
-    font-size: ${data.size}px;
-    hm_color: ${data.color};
-    background: ${data.background};
-    padding: ${data.padding_top}px ${data.padding_right}px ${data.padding_bottom}px ${data.padding_left}px;
-    text-align: ${data.textAlign};
-  }
-.hm_dec {
-    font-size: ${data.size}px;
-    hm_color: ${data.color};
-    background: ${data.background};
-    padding: ${data.padding_top}px ${data.padding_right}px ${data.padding_bottom}px ${data.padding_left}px;
-    text-align: ${data.textAlign};
-  }
-
-.hm_button {
-    font-size: ${data.size}px;
-    hm_color: ${data.color};
-    background: ${data.background};
-    padding: ${data.padding_top}px ${data.padding_right}px ${data.padding_bottom}px ${data.padding_left}px;
-    text-align: ${data.textAlign};
-  }
   ul {
     list-style-type: none;
     margin: 0;
@@ -133,7 +97,16 @@ const App = () => {
   .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   }
-  
+  .applo{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    cursor:default;
+  }
+
   .card_body {
     padding: 2px 16px;
   }
@@ -208,11 +181,12 @@ const App = () => {
     const tag = parser.parseFromString(e.dataTransfer.getData("text"), 'text/html');
     const pr = document.querySelector(`#${e.target.id}`);
     var newChildNodes = tag.body.childNodes;
-    var newElement = document.createElement('div');
-    newElement.className = 'green_gradient';
-    newElement.id = 'content';
+    // var newElement = document.createElement('div');
+    // newElement.className = 'green_gradient';
+    // newElement.id = 'content';
 
     for (var i = 0; i < newChildNodes.length; i++) {
+
       pr.appendChild(newChildNodes.item(i));
     }
     // pr.appendChild(newElement)
@@ -268,17 +242,71 @@ const App = () => {
   // capture user which element clicked!
 
   const cpature = (event) => {
-    event.target.style.backgroundColor = 'yellow';
+    event.target.style.outline = '1.7px solid yellow';
     console.log(event.target);
-    let text = event.target.outerText;
     let className = event.target.className;
-    console.log("text", text);
     console.log("className", className);
-
+    let css = document.styleSheets[2];
+    console.log(css.cssRules)
     // find the specefic rules by class Name
 
-    // var rules = event.target.ownerDocument.defaultView.getMatchedCSSRules(event.target, className);
-    // console.log(rules)
+    function csss(a) {
+      var sheets = document.styleSheets[2], o = [];
+      a.matches = a.matches || a.webkitMatchesSelector || a.mozMatchesSelector || a.msMatchesSelector || a.oMatchesSelector;
+      var rules = sheets.rules || sheets.cssRules;
+      for (var r in rules) {
+        if (a.matches(rules[r].selectorText)) {
+          o.push(rules[r]);
+        }
+      }
+      return o;
+    }
+    var cssjson = {
+      ".card":{
+          "font-family":" san-serif",
+          "padding":" 20px 20px 20px 20px"
+      }
+  }
+
+  var styleStr = "";
+  for(var i in cssjson){
+      styleStr += i + " {\n"
+      for(var j in cssjson[i]){
+          styleStr += "\t" + j + ":" + cssjson[i][j] + ";\n"
+      }
+      styleStr += "}\n"
+      console.log(styleStr)
+  }
+    let find = csss(document.querySelector("." + className));
+    let currStyle = find[0].cssText;
+
+    // css?.cssRules["." + className].style.color = '#FFF';
+
+    currStyle.replace("font-size: 20px","font-size: 50px");
+    console.log(currStyle)
+
+    css?.insertRule(".applo { font-family: Poppins; font-style: normal; font-weight: 600; font-size: 40px; line-height: 30px; text-align: center; cursor: default; }", cssLength-1);
+
+    console.log(css.cssRules)
+    for (var r in find[0].style) {
+      if (find[0].style[r] !== "") {
+        console.log(r);
+      }
+    }
+    //need to replace css with updated css
+    // var openFile = function (event) {
+    //   var input = event.target;
+
+    //   var reader = new FileReader();
+    //   reader.onload = function () {
+    //     var text = reader.result;
+    //     var node = document.getElementById('output');
+    //     node.innerText = text;
+    //     console.log(reader.result.substring(0, 200));
+    //   };
+    //   reader.readAsText(input.files[0]);
+    // };
+
   };
   //kept css style into a state then map in style tag in head tag
   return (
@@ -292,7 +320,7 @@ const App = () => {
           <div className="element">
             <button draggable={true} onDragStart={e => drag(e, col)}>Col</button>
             <button draggable={true} onDragStart={e => drag(e, row)}>Row</button>
-            <button draggable={true} onDragStart={e => drag(e, "<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni dolorum sint facere aliquam quas. Doloremque, quidem? Magni officiis quia tenetur quisquam. Accusamus?</p>")}>
+            <button draggable={true} onDragStart={e => drag(e, `<p class="applo">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni dolorum sint facere aliquam quas. Doloremque, quidem? Magni officiis quia tenetur quisquam. Accusamus?</p>`)}>
               Paragraph
             </button>
             <button draggable={true} onDragStart={e => drag(e, card)}>
@@ -317,6 +345,7 @@ const App = () => {
         }
         {tab === "eds" &&
           <div className="edit_field">
+            <input name="site_title" type="text" onChange={e => setEdit(e.target.value)} placeholder="site title" />
             <input name="site_title" type="text" onChange={onChange} placeholder="site title" />
             <input name="heading_type" type="text" onChange={onChange} placeholder="heading type" />
             <input name="text" type="text" onChange={onChange} placeholder="enter text" />
