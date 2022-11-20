@@ -6,6 +6,6 @@ cursor: pointer;
 `
 export const button = () => {
     return (
-        <button className={className}>Click more</button>
+        `<button className={className}>Click more</button>`
     )
 }

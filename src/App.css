@@ -63,3 +63,26 @@
 .hm_col_3:hover {
   outline: 1.7px solid orangered;
 }
+.container {
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 0 auto;
+}
+
+.hm_row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hm_col-3 {
+  width: 375px;
+}
+
+
+@media screen and (max-width:425px) {
+.hm_col_3 {
+  border: 2px dashed rgb(152, 150, 150);
+}  
+}
