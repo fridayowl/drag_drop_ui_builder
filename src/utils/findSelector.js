@@ -1,5 +1,5 @@
-const cpature = (event) => {
-    event.target.style.outline = '1.7px solid yellow';
+export const findSelector = (event) => {
+    event.target.classList.add("selected");
     console.log(event.target);
     let className = event.target.className;
     console.log("className", className);

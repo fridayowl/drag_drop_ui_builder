@@ -1,16 +1,12 @@
 import React from 'react'
-import './App.css'
+import EditorBoard from './ui-manager/editor'
 
 const App = () => {
 
   return (
-    <div className="main">
-      <div className="editor">
-      </div>
-      <div className="preview">
-        {/* <button className='add' onClick={() => addSection()}>add section</button> */}
-      </div>
-    </div>
+    <>
+      <EditorBoard />
+    </>
   )
 }
 

@@ -1,0 +1,19 @@
+.main_wrapper {
+    display: flex;
+}
+
+.editPanel {
+    width: 20%;
+    height: 100%;
+    border-right: 1.5px solid #f3f3f3;
+}
+
+.preview {
+    width: 80%;
+}
+
+.add_element {
+    text-align: center;
+    padding: 10px 5px;
+    border: 1.5px dashed #09d3ac;
+}
