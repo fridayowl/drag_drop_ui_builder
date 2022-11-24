@@ -24,7 +24,7 @@
 
 
 
-
+//  I haven't add style for row and col thats why i cannot apply style form style editor
 
 
 

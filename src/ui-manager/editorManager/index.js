@@ -6,9 +6,7 @@ import EditorPanel from './editor-panel/index';
 import { generateString } from '../../utils/generateString';
 import HtmlPreview from './preview/htmlPreview';
 
-
 const EditorBoard = () => {
-    //css.cssRules[0].style.setProperty("text-align","center");
     const addContainer = () => {
         let parser = new DOMParser();
         let s_id = generateString();

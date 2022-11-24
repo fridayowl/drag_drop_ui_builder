@@ -2,18 +2,17 @@ import React from 'react';
 import styles from './preview.module.css';
 import { htmlgenerator } from './../../../utils/htmlgenerator';
 import { appendCss } from './../../../utils/appendCss';
+import { useDispatch } from 'react-redux';
+import { getClassName, getId, getOpenEditorData } from './../../../redux/action/stylefield';
 
 const HtmlPreview = () => {
-  let styleSheets = document.styleSheets;
-  const findTag = (e) => {
-    let pid = e.target.parentNode.id;
-    let cid = e.target.className;
-    console.log(e,{pid},{cid})
-    for (var r in styleSheets) {
-      if (styleSheets[r].title === "preview_css") {
-        console.log(styleSheets[r])
-      }
-    }
+  const dispatch = useDispatch();
+
+  const OpenStyleEditor = (e) => {
+    dispatch(getId(e.target.parentNode.id));
+    dispatch(getClassName(e.target.className));
+    dispatch(getOpenEditorData(true));
+
   }
 
   const getAndSetData = (e) => {
@@ -27,7 +26,7 @@ const HtmlPreview = () => {
   }
 
   return (
-    <div className={styles.htmlPreview} onClick={(e) => findTag(e)} draggable={false} onDragOver={(e) => e.preventDefault()} onDrop={getAndSetData} dangerouslySetInnerHTML={{
+    <div className={styles.htmlPreview} onClick={(e) => OpenStyleEditor(e)} draggable={false} onDragOver={(e) => e.preventDefault()} onDrop={getAndSetData} dangerouslySetInnerHTML={{
       __html: `
         <!DOCTYPE html>
         <html lang="en">

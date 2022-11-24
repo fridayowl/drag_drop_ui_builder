@@ -1,57 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CiText } from 'react-icons/ci';
 import { CgImage } from 'react-icons/cg';
 import { FiColumns } from 'react-icons/fi';
 import { BsLayoutThreeColumns } from 'react-icons/bs';
-import { FaBars, FaAlignCenter, FaAlignJustify, FaAlignLeft, FaAlignRight } from 'react-icons/fa';
+import { FaAlignCenter, FaAlignJustify, FaAlignLeft, FaAlignRight } from 'react-icons/fa';
 import styles from './panel.module.css';
+import { UpdatedCssAppend } from './../../../utils/updateAndAppendCss';
+import { useSelector } from 'react-redux';
 
 const EditorPanel = () => {
   const [tab, setTabs] = useState("block");
-  const [inputs, setInputs] = useState({});
-  const handleChange = e => setInputs(prevState => ({ ...prevState, [e.target.name]: e.target.value }));
-  const handleClick = (arg) => {
-    setTabs(arg)
-  };
+  const style = useSelector(state => state.styleFields);
+  const handleChange = (e) => {
+    let cssProperty = { [e.target.name]: e.target.value };
+    UpdatedCssAppend(cssProperty, style);
+  }
   const drag = (ev, data) => {
     ev.dataTransfer.setData("text", data);
-  };
-
-  let style = {
-    "font_size": "",
-    "font_family": "",
-    "font_weight": "",
-    "text_align": "",
-    "color": "",
-    "background-color": "",
-    "text_decoration": "",
-    "line_height": "",
-    "font-style": "italic"
   };
 
   let margin_data = [
     {
       id: 1,
       title: "Top",
-      name: "margin_top",
+      name: "margin-top",
       unitName: "px",
     },
     {
       id: 2,
       title: "Bottom",
-      name: "margin_bottom",
+      name: "margin-bottom",
       unitName: "px",
     },
     {
       id: 3,
       title: "Left",
-      name: "margin_left",
+      name: "margin-left",
       unitName: "px",
     },
     {
       id: 4,
       title: "Right",
-      name: "margin_right",
+      name: "margin-right",
       unitName: "px",
     }
   ];
@@ -59,25 +49,25 @@ const EditorPanel = () => {
     {
       id: 1,
       title: "Top",
-      name: "padding_top",
+      name: "padding-top",
       unitName: "px",
     },
     {
       id: 2,
       title: "Bottom",
-      name: "padding_bottom",
+      name: "padding-bottom",
       unitName: "px",
     },
     {
       id: 3,
       title: "Left",
-      name: "padding_left",
+      name: "padding-left",
       unitName: "px",
     },
     {
       id: 4,
       title: "Right",
-      name: "margin_right",
+      name: "margin-right",
       unitName: "px",
     }
   ];
@@ -85,19 +75,19 @@ const EditorPanel = () => {
     {
       id: 1,
       title: "Font size",
-      name: "font_size",
+      name: "font-size",
       unitName: "px",
     },
     {
       id: 2,
       title: "Font weight",
-      name: "font_weight",
-      unitName: "px",
+      name: "font-weight",
+      unitName: "",
     },
     {
       id: 3,
       title: "Line height",
-      name: "line_height",
+      name: "line-height",
       unitName: "px",
     }
   ];
@@ -129,7 +119,7 @@ const EditorPanel = () => {
         tag: "img"
       }
     },
-  ]
+  ];
   let col_data = [
     {
       id: 1,
@@ -176,13 +166,17 @@ const EditorPanel = () => {
       },
       title: "2/12",
     }
-  ]
+  ];
+  useEffect(() => {
+    if(style.openEditor){setTabs("style")}
+  }, [style.openEditor])
+
   return (
     <div className={styles.editorPanel}>
       <div className={styles.tab_panel}>
-        <button onClick={() => handleClick("block")}>Block</button>
-        <button onClick={() => handleClick("style")}>Style</button>
-        <button onClick={() => handleClick("site_setting")}>Site setting</button>
+        <button onClick={() => setTabs("block")}>Block</button>
+        {style.openEditor && <button onClick={() => setTabs("style")}>Style</button>}
+        <button onClick={() => setTabs("site_setting")}>Site setting</button>
       </div>
       {tab === "block" && <div className={styles.block_list}>
         <details open={true}>
@@ -249,19 +243,19 @@ const EditorPanel = () => {
           <div className={styles.typograpy_box_container}>
             <h6>Text align:</h6>
             <div className={styles.typograpy_box}>
-              <button onClick={handleChange} name="text_align" value="left">
+              <button onClick={handleChange} name="text-align" value="left">
                 Left
                 <FaAlignLeft />
               </button>
-              <button onClick={handleChange} name="text_align" value="center">
+              <button onClick={handleChange} name="text-align" value="center">
                 center
                 <FaAlignCenter />
               </button>
-              <button onClick={handleChange} name="text_align" value="right">
+              <button onClick={handleChange} name="text-align" value="right">
                 right
                 <FaAlignRight />
               </button>
-              <button onClick={handleChange} name="text_align" value="justify">
+              <button onClick={handleChange} name="text-align" value="justify">
                 justify
                 <FaAlignJustify />
               </button>
@@ -276,7 +270,7 @@ const EditorPanel = () => {
               <div className={styles.edit_box}>
                 <h6>font family</h6>
                 <div className={styles.edit_box_content}>
-                  <select type="select" name="font_family" onChange={handleChange} value="">
+                  <select type="select" name="font-family" onChange={handleChange} value="">
                     <option value="san serif">san sarif</option>
                     <option value="popin">popin</option>
                     <option value="opel">Opel</option>
@@ -287,7 +281,7 @@ const EditorPanel = () => {
               <div className={styles.edit_box}>
                 <h6>font style</h6>
                 <div className={styles.edit_box_content}>
-                  <select type="select" name="font_style" onChange={handleChange} value="">
+                  <select type="select" name="font-style" onChange={handleChange} value="">
                     <option value="san serif">normal</option>
                     <option value="popin">italic</option>
                     <option value="opel">Opel</option>
@@ -330,7 +324,7 @@ const EditorPanel = () => {
           <summary><strong>Decoration and transformation</strong></summary>
           <p>Text decoration:</p>
           <div className={styles.typograpy_box}>
-            <button onClick={handleChange} name="text_decoration" value="underline">
+            <button onClick={handleChange} name="text-decoration" value="underline">
               Under line
               <FaAlignLeft />
             </button>
@@ -338,8 +332,8 @@ const EditorPanel = () => {
               doted
               <FaAlignCenter />
             </button>
-            <button>
-              right
+            <button onClick={handleChange} name="text-decoration" value="none">
+              None
               <FaAlignRight />
             </button>
             <button>
@@ -349,15 +343,15 @@ const EditorPanel = () => {
           </div>
           <p>Text transformation:</p>
           <div className={styles.typograpy_box}>
-            <button onClick={handleChange} name="text_decoration" value="underline">
+            <button onClick={handleChange} name="text-transform" value="uppercase">
               Uppercase
               <FaAlignLeft />
             </button>
-            <button>
+            <button onClick={handleChange} name="text-transform" value="capitalize">
               Capitalize
               <FaAlignCenter />
             </button>
-            <button>
+            <button onClick={handleChange} name="text-transform" value="lowercase">
               lower case
               <FaAlignRight />
             </button>
@@ -372,7 +366,7 @@ const EditorPanel = () => {
           </div>
           <div>
             <span>background:</span>
-            <input type="color" name="background_color" defaultValue="#ff0000" onChange={handleChange} />
+            <input type="color" name="background-color" defaultValue="#ff0000" onChange={handleChange} />
           </div>
         </details>
       </div>}

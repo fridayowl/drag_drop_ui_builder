@@ -1,5 +1,5 @@
 import React from 'react'
-import EditorBoard from './ui-manager/editor'
+import EditorBoard from './ui-manager/editorManager'
 
 const App = () => {
 
