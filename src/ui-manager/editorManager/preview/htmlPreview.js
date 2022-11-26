@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './preview.module.css';
+import styles from '../../../styles/panel.module.css';
 import { htmlgenerator } from './../../../utils/htmlgenerator';
 import { appendCss } from './../../../utils/appendCss';
 import { useDispatch } from 'react-redux';
@@ -32,6 +32,52 @@ const HtmlPreview = () => {
         <html lang="en">
         <head>
           <style title="preview_css">
+          * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+          .container {
+            width: 100%;
+            padding-left: 15px;
+            padding-right: 15px;
+            margin: 0 auto;
+          }
+          .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          }
+          
+          .col-1 {
+            width: 100%;
+            min-height: 100px;
+          }
+          
+          .col-2 {
+            width: 50%;
+            min-height: 100px;
+          }
+          
+          .col-3 {
+            width: 25%;
+            min-height: 100px;
+          }
+          
+          .col-4 {
+            width: 25%;
+            min-height: 100px;
+          }
+          
+          .col-6 {
+            width: 17%;
+            min-height: 100px;
+          }
+          
+          img {
+            width: 100%;
+            height: auto;
+          }
           </style>
         </head>
         <body>

@@ -1,0 +1,56 @@
+.editorPanel {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 100vh;
+    transition: opacity 50ms;
+}
+.tab_panel{
+    display:flex;
+    border-bottom: 1.5px solid #f3f3f3;
+    padding: 10px 5px;
+}
+.block_list{
+    display: flex;
+    flex-wrap: wrap;
+}
+.margin_box,
+.padding_box,
+.typograpy_box
+{
+    display: flex;
+    column-gap: 10px;
+    flex-wrap: wrap;
+    
+}
+.edit_box_content {
+    display: flex;
+    align-items: center;
+}
+
+.edit_box_content input {
+    width: 40px;
+}
+.block_list button{
+    margin: 10px 5px;
+    width: 78px;
+    height: 70px;
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 2px;
+    border: 1px solid #b5b5b5;
+}
+.block_list button svg{
+    font-size: 35px;
+    color: #212121;
+}
+.block_list button h4{
+    color: #212121;
+    font-family: dm sans,Sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 10px;
+}

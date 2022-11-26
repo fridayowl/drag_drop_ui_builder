@@ -1,0 +1,28 @@
+{
+
+    "db": [{
+            "id": 1,
+            "title": "Top",
+            "name": "margin-top",
+            "unitName": "px"
+        },
+        {
+            "id": 2,
+            "title": "Bottom",
+            "name": "margin-bottom",
+            "unitName": "px"
+        },
+        {
+            "id": 3,
+            "title": "Left",
+            "name": "margin-left",
+            "unitName": "px"
+        },
+        {
+            "id": 4,
+            "title": "Right",
+            "name": "margin-right",
+            "unitName": "px"
+        }
+    ]
+}

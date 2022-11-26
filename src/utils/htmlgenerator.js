@@ -33,4 +33,11 @@ export const htmlgenerator = (arg) => {
         image.src = tagData[0].defaultSrc;
         return image;
     }
+    else  {
+        let tag = document.createElement(data.tag);
+        tag.id = id;
+        tag.className = className;
+        tag.textContent = tagData[0].text;
+        return tag;
+    }
 }

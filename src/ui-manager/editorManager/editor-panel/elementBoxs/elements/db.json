@@ -1,0 +1,39 @@
+{
+    "block_data": [{
+            "id": 1,
+            "icon": "<CiText />",
+            "title": "Heading",
+            "data": {
+                "name": "typography",
+                "tag": "h1"
+            }
+        },
+        {
+            "id": 2,
+            "icon": "<CiText />",
+            "title": "Paragraph",
+            "data": {
+                "name": "typography",
+                "tag": "p"
+            }
+        },
+        {
+            "id": 3,
+            "icon": "<CgImage />",
+            "title": "Photo/media",
+            "data": {
+                "name": "photo",
+                "tag": "img"
+            }
+        },
+        {
+            "id": 4,
+            "icon": "<CgImage />",
+            "title": "Button",
+            "data": {
+                "name": "button",
+                "tag": "button"
+            }
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+[{
+        "id": 1,
+        "title": "Font size",
+        "name": "font-size",
+        "unitName": "px"
+    },
+    {
+        "id": 2,
+        "title": "Font weight",
+        "name": "font-weight",
+        "unitName": ""
+    },
+    {
+        "id": 3,
+        "title": "Line height",
+        "name": "line-height",
+        "unitName": "px"
+    }
+]

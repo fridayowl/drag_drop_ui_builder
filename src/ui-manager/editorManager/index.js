@@ -1,6 +1,6 @@
 import React from 'react';
 import { GrFormAdd } from 'react-icons/gr';
-import styles from './editor.board.module.css';
+import styles from '../../styles/editor.board.module.css';
 import Header from './header/Header';
 import EditorPanel from './editor-panel/index';
 import { generateString } from '../../utils/generateString';

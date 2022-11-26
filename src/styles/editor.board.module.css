@@ -13,7 +13,21 @@
 }
 
 .add_element {
+    margin-top: 30px;
     text-align: center;
     padding: 10px 5px;
     border: 1.5px dashed #09d3ac;
+    cursor: default;
+}
+.add_element button{
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 25px;
+    padding: 10px;
+    color: #09d3ac !important;
+}
+.add_element button svg{
+    font-size: 19px;
+
 }
