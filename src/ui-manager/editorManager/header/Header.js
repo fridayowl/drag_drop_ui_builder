@@ -1,4 +1,8 @@
-import React from 'react'
+import React from 'react';
+import { SlScreenDesktop, SlScreenTablet } from 'react-icons/sl';
+import { CiMobile3 } from 'react-icons/ci';
+import { RiSave3Line,RiCodeSSlashLine,RiDownload2Line } from 'react-icons/ri';
+import { BsFillEyeFill } from 'react-icons/bs';
 import styles from './header.module.css';
 
 const Header = () => {
@@ -6,23 +10,23 @@ const Header = () => {
     <header className={styles.editor_header}>
       <div>
         <h4>Ui Editor Panel</h4>
-        <button>Save</button>
+        <button><RiSave3Line /> Save</button>
       </div>
       <div>
         <button>
-          Mobile
+          <CiMobile3 />
         </button>
         <button>
-          Tablet
+          <SlScreenTablet />
         </button>
         <button>
-          Desktop
+          <SlScreenDesktop />
         </button>
       </div>
       <div>
-        <button>Preview</button>
-        <button>Code</button>
-        <button>Download</button>
+        <button> <BsFillEyeFill /> Preview</button>
+        <button> <RiCodeSSlashLine/> Code</button>
+        <button> <RiDownload2Line/> Download</button>
       </div>
     </header>
   )

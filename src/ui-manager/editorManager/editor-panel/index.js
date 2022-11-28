@@ -25,10 +25,12 @@ const EditorPanel = () => {
           <FiSettings /> Site setting
         </button>
       </div>
-      {tab === "block" && <ElementBoxs />}
-      {tab === "content" && <ContentEditor />}
-      {tab === "style" && <StyleBoxs />}
-      {tab === "site_setting" && <SiteSettings />}
+      <div className={styles.elementContainer}>
+        {tab === "block" && <ElementBoxs />}
+        {tab === "content" && <ContentEditor />}
+        {tab === "style" && <StyleBoxs />}
+        {tab === "site_setting" && <SiteSettings />}
+      </div>
     </div>
   )
 }

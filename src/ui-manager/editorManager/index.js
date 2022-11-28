@@ -1,5 +1,5 @@
 import React from 'react';
-import { GrFormAdd } from 'react-icons/gr';
+import { AiOutlineAppstoreAdd } from 'react-icons/ai';
 import styles from '../../styles/editor.board.module.css';
 import Header from './header/Header';
 import EditorPanel from './editor-panel/index';
@@ -21,8 +21,10 @@ const EditorBoard = () => {
         document.getElementById("body").appendChild(htmlDoc.body.children[0]);
     }
     return (
-        <>
-            <Header />
+        <div className={styles.editorManager}>
+            <div className={styles.headerPanel}>
+                <Header />
+            </div>
             <div className={styles.main_wrapper}>
                 <div className={styles.editPanel}>
                     <EditorPanel />
@@ -31,12 +33,12 @@ const EditorBoard = () => {
                     <HtmlPreview />
                     <div className={styles.add_element}>
                         <button onClick={() => addContainer()}>
-                            <GrFormAdd />
+                            <AiOutlineAppstoreAdd />
                         </button>
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

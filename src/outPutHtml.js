@@ -1,5 +1,5 @@
 export const outputHtml = (props) => {
-    return `
+  return `
     
     <!DOCTYPE html>
     <html lang=${props.html.lang}>
@@ -14,11 +14,22 @@ export const outputHtml = (props) => {
     
     <body>
       ${props.html.body.map(item => (
-      `<${item.name}>
+    `<${item.name}>
       </${item.name}>`
-      ))}
+  ))}
     </body>
     
     </html>
 `
 }
+
+/**
+ * let str = "@media(max-width:1200px)";
+let mediaSize = str.replace(/[^\d]/g,'')
+console.log(mediaSize)
+ */
+/**
+ *   //   const stylesheets = document.styleSheets;
+  //   let stylesheet = stylesheets[15];
+  //   console.log("a",stylesheet.rules[13].conditionText);
+ */

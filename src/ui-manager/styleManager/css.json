@@ -1,11 +1,11 @@
 [{
         "tag": "h1",
-        "style": "color:green;font-family: sans serif;font-size:30px margin:15px 0px"
+        "style": "color:green;font-family: sans-serif;font-size:30px margin:15px 0px"
     },
     {
 
         "tag": "p",
-        "style": "color: blue;font-family: sans serif; font-size: 30px; margin:15px 0px"
+        "style": "color: blue;font-family: sans-serif; font-size: 30px; margin:15px 0px"
     },
     {
         "tag": "img",
