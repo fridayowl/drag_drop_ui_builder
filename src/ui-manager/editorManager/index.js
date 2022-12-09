@@ -1,25 +1,11 @@
 import React from 'react';
-import { AiOutlineAppstoreAdd } from 'react-icons/ai';
 import styles from '../../styles/editor.board.module.css';
 import Header from './header/Header';
 import EditorPanel from './editor-panel/index';
-import { generateString } from '../../utils/generateString';
 import HtmlPreview from './preview/htmlPreview';
 
 const EditorBoard = () => {
-    const addContainer = () => {
-        let parser = new DOMParser();
-        let s_id = generateString();
-        let c_id = generateString();
-        let container = `
-        <section id=${s_id} class="hm_section">
-            <div id=${c_id} class="hm_container">
-            </div>
-        </section>
-        `
-        let htmlDoc = parser.parseFromString(container, 'text/html');
-        document.getElementById("body").appendChild(htmlDoc.body.children[0]);
-    }
+
     return (
         <div className={styles.editorManager}>
             <div className={styles.headerPanel}>
@@ -29,12 +15,9 @@ const EditorBoard = () => {
                 <div className={styles.editPanel}>
                     <EditorPanel />
                 </div>
-                <div className={styles.preview}>
-                    <HtmlPreview />
-                    <div className={styles.add_element}>
-                        <button onClick={() => addContainer()}>
-                            <AiOutlineAppstoreAdd />
-                        </button>
+                <div className={styles.previewBoard}>
+                    <div className={styles.preview}>
+                        <HtmlPreview />
                     </div>
                 </div>
             </div>

@@ -3,4 +3,20 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 1.5px solid #f3f3f3;
+    position: relative;
+    z-index: 99999;
+}
+
+.sizeButtonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.sizeButtonContainer button {
+    margin: 0px 10px;
+}
+
+.sizeButtonContainer button svg {
+    font-size: 24px;
 }

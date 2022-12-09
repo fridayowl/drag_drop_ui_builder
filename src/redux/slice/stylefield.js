@@ -6,7 +6,7 @@ export const stylefieldslice = createSlice({
         styleId:"",
         styleClassName:"",
         style:"",
-        openEditor:false,
+        openEditor:"block",
     },
     reducers: {
         styleId: (state, action) => {

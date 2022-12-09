@@ -1,5 +1,7 @@
 import { generateString } from './generateString';
 import tagdata from '../ui-manager/tagManager/tag.json';
+import { getDoc } from './getDocument';
+
 export const htmlgenerator = (arg) => {
     let data = arg;
     let tagData = tagdata.filter((item => item.tag === data.tag));
@@ -19,6 +21,18 @@ export const htmlgenerator = (arg) => {
         }
         return col;
     }
+    else if (data.name === "section") {
+        let s_id = generateString();
+        let c_id = generateString();
+        let sec = document.createElement("section");
+        let con = document.createElement("div");
+        sec.id = s_id;
+        con.id = c_id;
+        sec.className = "section";
+        con.className = "container";
+        sec.appendChild(con);
+        return sec;
+    }
     else if (data.name === 'typography') {
         let typography = document.createElement(data.tag);
         typography.id = id;
@@ -33,7 +47,15 @@ export const htmlgenerator = (arg) => {
         image.src = tagData[0].defaultSrc;
         return image;
     }
-    else  {
+    else if (data.name === 'input') {
+        let input = document.createElement(data.tag);
+        input.id = id;
+        input.className = className;
+        input.placeholder = tagData[0].data.placeholder;
+        input.type = tagData[0].data.type;
+        return input;
+    }
+    else {
         let tag = document.createElement(data.tag);
         tag.id = id;
         tag.className = className;

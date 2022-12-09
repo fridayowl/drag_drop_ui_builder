@@ -1,3 +1,4 @@
+//not used
 export const findSelector = (event) => {
     event.target.classList.add("selected");
     console.log(event.target);

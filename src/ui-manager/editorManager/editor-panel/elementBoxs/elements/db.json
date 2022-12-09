@@ -1,5 +1,6 @@
 {
-    "block_data": [{
+    "block_data": [
+        {
             "id": 1,
             "icon": "<CiText />",
             "title": "Heading",
@@ -33,6 +34,31 @@
             "data": {
                 "name": "button",
                 "tag": "button"
+            }
+        },
+        {
+            "id": 5,
+            "icon": "<CgImage />",
+            "title": "Input Field",
+            "data": {
+                "name": "input",
+                "placeholder": "Enter your text",
+                "type": "text",
+                "tag": "input"
+            }
+        },
+        {
+            "id": 6,
+            "icon": "<CgImage />",
+            "title": "List",
+            "data": {
+                "name": "ul",
+                "tag": "ul",
+                "child": [
+                    "li",
+                    "li",
+                    "li"
+                ]
             }
         }
     ]

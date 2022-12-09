@@ -6,5 +6,5 @@ export const generateString = () => {
         charset: 'alphabetic'
     });
 
-    return string;
+    return string.toLowerCase();
 }

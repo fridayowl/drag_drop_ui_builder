@@ -1,37 +1,39 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from '../../../styles/panel.module.css';
 import SiteSettings from './siteSettings/index';
 import StyleBoxs from './styleBoxs/index';
 import ElementBoxs from './elementBoxs/index';
 import { FiSettings } from 'react-icons/fi';
 import ContentEditor from './contentEditor';
+import { useDispatch, useSelector } from 'react-redux';
+import { getOpenEditorData } from '../../../redux/action/stylefield';
 
 const EditorPanel = () => {
-  const [tab, setTabs] = useState("block");
-
+  const open = useSelector(state => state.styleFields);
+  const dispatch = useDispatch()
   return (
     <div className={styles.editorPanel}>
       <div className={styles.tab_panel}>
-        <button onClick={() => setTabs("block")}>
+        <button onClick={() => dispatch(getOpenEditorData("block"))}>
           Block
         </button>
-        <button onClick={() => setTabs("content")}>
+        <button onClick={() => dispatch(getOpenEditorData("content"))}>
           Content
         </button>
-        <button onClick={() => setTabs("style")}>
+        <button onClick={() => dispatch(getOpenEditorData("style"))}>
           Style
         </button>
-        <button onClick={() => setTabs("site_setting")}>
+        <button onClick={() => dispatch(getOpenEditorData("site_setting"))}>
           <FiSettings /> Site setting
         </button>
       </div>
       <div className={styles.elementContainer}>
-        {tab === "block" && <ElementBoxs />}
-        {tab === "content" && <ContentEditor />}
-        {tab === "style" && <StyleBoxs />}
-        {tab === "site_setting" && <SiteSettings />}
+        {open?.openEditor === "block" && <ElementBoxs />}
+        {open?.openEditor === "content" && <ContentEditor />}
+        {open?.openEditor === "style" && <StyleBoxs />}
+        {open?.openEditor === "site_setting" && <SiteSettings />}
       </div>
-    </div>
+    </div >
   )
 }
 
