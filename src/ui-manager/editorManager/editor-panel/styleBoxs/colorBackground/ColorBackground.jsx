@@ -14,11 +14,11 @@ const ColorBackground = () => {
             <p>color and background</p>
             <div>
                 <span>color:</span>
-                <input type="color" name="color" defaultValue="#ff0000" onChange={handleChange} />
+                <input type="color" name="color" defaultValue="#ff0000" onBlur={handleChange} />
             </div>
             <div>
                 <span>background:</span>
-                <input type="color" name="background-color" defaultValue="#ff0000" onChange={handleChange} />
+                <input type="color" name="background-color" defaultValue="#ff0000" onBlur={handleChange} />
             </div>
             <div>
                 <span>background-image:</span>

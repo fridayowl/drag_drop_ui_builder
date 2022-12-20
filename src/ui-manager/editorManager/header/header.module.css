@@ -2,11 +2,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1.5px solid #f3f3f3;
+    border-bottom: 1.5px solid #e6e6e6;
+    background-color: #ffff;
     position: relative;
     z-index: 99999;
+    height: 50px;
 }
-
+.left_side_content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 .sizeButtonContainer {
     display: flex;
     align-items: center;

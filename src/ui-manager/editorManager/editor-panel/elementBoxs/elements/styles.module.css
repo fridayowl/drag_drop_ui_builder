@@ -4,3 +4,7 @@
 .start_darg{
     cursor: move;
 }
+.element_item img{
+    width: 40px;
+    height: 40px;
+}

@@ -1,3 +1,7 @@
 .coloumn:hover {
     cursor: move;
 }
+.coloumn img{
+    width: 40px;
+    height: 40px;
+}

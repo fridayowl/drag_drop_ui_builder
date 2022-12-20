@@ -1,6 +1,5 @@
 import { generateString } from './generateString';
 import tagdata from '../ui-manager/tagManager/tag.json';
-import { getDoc } from './getDocument';
 
 export const htmlgenerator = (arg) => {
     let data = arg;

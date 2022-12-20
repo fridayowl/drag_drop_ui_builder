@@ -1,7 +1,7 @@
 [
   {
     "id": 90,
-    "icon": "section",
+    "icon": "https://i.ibb.co/HpSVL9s/icons8-section-96.png",
     "data": {
       "name": "section",
       "tag": 1
@@ -10,7 +10,7 @@
   },
   {
     "id": 11,
-    "icon": "BsLayoutThreeColumns",
+    "icon": "https://i.ibb.co/5WVrVQL/icons8-column-96.png",
     "data": {
       "name": "col",
       "tag": 1
@@ -19,7 +19,7 @@
   },
   {
     "id": 21,
-    "icon": "FiColumns",
+    "icon": "https://i.ibb.co/F747c89/icons8-columns-96.png",
     "data": {
       "name": "col",
       "tag": 2
@@ -28,7 +28,7 @@
   },
   {
     "id": 31,
-    "icon": "FiColumns",
+    "icon": "https://i.ibb.co/YRNJCb6/icons8-view-column-96.png",
     "data": {
       "name": "col",
       "tag": 3
@@ -37,7 +37,7 @@
   },
   {
     "id": 41,
-    "icon": "FiColumns",
+    "icon": "https://i.ibb.co/YRNJCb6/icons8-view-column-96.png",
     "data": {
       "name": "col",
       "tag": 4
@@ -46,7 +46,7 @@
   },
   {
     "id": 51,
-    "icon": "FiColumns",
+    "icon": "https://i.ibb.co/YRNJCb6/icons8-view-column-96.png",
     "data": {
       "name": "col",
       "tag": 6

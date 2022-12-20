@@ -2,7 +2,7 @@
     "block_data": [
         {
             "id": 1,
-            "icon": "<CiText />",
+            "icon": "https://i.ibb.co/1LffBrj/icons8-header-96.png",
             "title": "Heading",
             "data": {
                 "name": "typography",
@@ -11,7 +11,7 @@
         },
         {
             "id": 2,
-            "icon": "<CiText />",
+            "icon": "https://i.ibb.co/HgRp2vz/icons8-lowercase-96.png",
             "title": "Paragraph",
             "data": {
                 "name": "typography",
@@ -20,7 +20,7 @@
         },
         {
             "id": 3,
-            "icon": "<CgImage />",
+            "icon": "https://i.ibb.co/YckvgRk/icons8-picture-96.png",
             "title": "Photo/media",
             "data": {
                 "name": "photo",
@@ -29,7 +29,7 @@
         },
         {
             "id": 4,
-            "icon": "<CgImage />",
+            "icon": "https://i.ibb.co/LQPPTwN/icons8-button-96.png",
             "title": "Button",
             "data": {
                 "name": "button",
@@ -38,7 +38,7 @@
         },
         {
             "id": 5,
-            "icon": "<CgImage />",
+            "icon": "https://i.ibb.co/nr3Fm9S/icons8-text-input-form-96.png",
             "title": "Input Field",
             "data": {
                 "name": "input",
@@ -49,7 +49,7 @@
         },
         {
             "id": 6,
-            "icon": "<CgImage />",
+            "icon": "https://i.ibb.co/M1WVGx2/icons8-todo-list-96.png",
             "title": "List",
             "data": {
                 "name": "ul",

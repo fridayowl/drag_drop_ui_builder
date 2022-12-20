@@ -4,7 +4,35 @@ export const doc = {
 <html lang="en">
 
 <head>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#body {
+    width:100%;
+    margin: 0 auto;
+    height:100vh;
+    background:#ffff;
+}
+
+#body section,
+#body div {
+    width:100%;
+    min-height: 40px;
+    margin: 5px;
+    border: 1.8px solid rgba(170, 170, 170, 0.7);
+}
+
+.active {
+    border: 1.8px solid rgba(0, 183, 255, 0.77) !important;
+    cursor: pointer !important;
+}
+</style>
     <style title="preview_css">
+    
         .container {
             width: 100%;
             padding-left: 15px;
@@ -45,27 +73,6 @@ export const doc = {
         img {
             width: 100%;
             height: auto;
-        }
-
-        #body {
-            margin: 0 auto;
-            outline: 1px dashed rgba(170, 170, 170, 0.7);
-            outline-offset: -2px;
-            height:100vh;
-        }
-
-        #body section,
-        #body div {
-            min-height: 40px;
-            padding: 5px;
-            outline: 1px dashed rgba(170, 170, 170, 0.7);
-            outline-offset: -2px;
-        }
-
-        .active {
-            outline: 1.8px solid rgba(0, 183, 255, 0.77) !important;
-            outline-offset: -2px !important;
-            cursor: pointer !important;
         }
 
         @media (max-width:425px) {

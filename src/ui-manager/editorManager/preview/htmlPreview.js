@@ -14,7 +14,22 @@ const HtmlPreview = () => {
 
   const OpenStyleEditor = (e) => {
     e.target.classList.remove("active");
-    dispatch(getId(e.target.parentNode.id));
+    let className = e.target.className;
+    if (className === "body" || className === "section" || className === "container" || className === "col-1" || className === "col-2" || className === "col-4" || className === "col-6") {
+      if (className === "body") {
+        let pid = e.target.children;
+        if (pid.length > 0) {
+          let item = pid[0];
+          dispatch(getId(item.id));
+        }
+      }
+      else {
+        dispatch(getId(e.target.id));
+      }
+    }
+    else {
+      dispatch(getId(e.target.parentNode.id));
+    }
     dispatch(getClassName(e.target.className));
     dispatch(getTagContent(e.target.innerHTML));
     dispatch(getTagName(e.target.localName));
@@ -43,9 +58,11 @@ const HtmlPreview = () => {
     }
     if (type.name !== "section") {
       doc.querySelector(`#${e.target.id}`).appendChild(item);
+      if (type.name !== "col") {
+        let pid = e.target.id;
+        appendCss(pid, item, type);
+      }
     }
-    let pid = e.target.id;
-    appendCss(pid, item, type);
   }
   useEffect(() => {
     const iFrame = document.getElementById("dropframe");

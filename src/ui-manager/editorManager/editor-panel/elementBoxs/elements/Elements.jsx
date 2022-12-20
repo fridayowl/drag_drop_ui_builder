@@ -9,7 +9,7 @@ const Element = () => {
             {
                 db.block_data.map((item => (
                     <button className={styles.element_item} draggable={true} onDragStart={e => e.dataTransfer.setData("text", JSON.stringify(item.data))}>
-                        {item.icon}
+                        <img src={item.icon} alt={item.icon}/>
                         <h4>{item.title}</h4>
                     </button>
                 )))
