@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SlScreenDesktop, SlScreenTablet } from 'react-icons/sl';
 import { CiMobile3 } from 'react-icons/ci';
 import { IoIosTabletLandscape } from 'react-icons/io';
@@ -10,7 +10,6 @@ import { getOrientedMode, getScreenSize } from '../../../redux/action/default';
 
 const Header = () => {
   const dispatch = useDispatch();
-
   const screenSize = (width, height) => {
     dispatch(getScreenSize({
       width: width,

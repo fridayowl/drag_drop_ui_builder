@@ -5,7 +5,7 @@ import { appendCss } from './../../../utils/appendCss';
 import { useDispatch, useSelector } from 'react-redux';
 import { getClassName, getId, getOpenEditorData } from './../../../redux/action/stylefield';
 import { doc } from './preview.db';
-import { getTagContent, getTagName } from '../../../redux/action/content';
+import { getTagContent,getImageUrl, getTagName } from '../../../redux/action/content';
 import { getDoc } from '../../../utils/getDocument';
 
 const HtmlPreview = () => {
@@ -32,6 +32,7 @@ const HtmlPreview = () => {
     }
     dispatch(getClassName(e.target.className));
     dispatch(getTagContent(e.target.innerHTML));
+    dispatch(getImageUrl(e.target.src));
     dispatch(getTagName(e.target.localName));
     dispatch(getOpenEditorData("style"));
   }

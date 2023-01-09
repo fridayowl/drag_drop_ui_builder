@@ -7,7 +7,7 @@ export const defaultSlice = createSlice({
         height: "100%",
         tabletOriented: null,
         preview: false,
-        showCode:false
+        showCode: false
     },
     reducers: {
         viewPort: (state, action) => {

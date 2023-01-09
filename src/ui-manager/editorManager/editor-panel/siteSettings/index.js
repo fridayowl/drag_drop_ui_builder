@@ -19,7 +19,7 @@ const SiteSettings = () => {
     }
   };
 
-  const handleChange = (e) => { console.log(e); dispatch(getMetaTags(e.target.value)) }
+  const handleChange = (e) => { dispatch(getMetaTags(e.target.value)) }
 
   return (
     <div className={styles.site_setting}>

@@ -6,37 +6,49 @@ export const doc = {
 <head>
 <style>
 body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-#body {
     width:100%;
     margin: 0 auto;
     height:100vh;
     background:#ffff;
+    padding-top:20px;
 }
-
 #body section,
 #body div {
-    width:100%;
-    min-height: 40px;
-    margin: 5px;
-    border: 1.8px solid rgba(170, 170, 170, 0.7);
+  min-height: 150px;
+  padding: 5px 2px;
+  outline: 1px dashed rgba(170, 170, 170, 0.7);
+  outline-offset: -2px;
 }
 
-.active {
-    border: 1.8px solid rgba(0, 183, 255, 0.77) !important;
-    cursor: pointer !important;
+.active{
+  outline: 1.8px solid rgba(0, 183, 255, 0.77) !important;
+  outline-offset: -2px !important;
+  cursor: pointer !important;
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }
 </style>
     <style title="preview_css">
     
         .container {
             width: 100%;
-            padding-left: 15px;
-            padding-right: 15px;
             margin: 0 auto;
         }
 
@@ -73,6 +85,11 @@ body {
         img {
             width: 100%;
             height: auto;
+        }
+        @media (max-width:1024px) {
+ 
+        }
+        @media (max-width:768px) {
         }
 
         @media (max-width:425px) {
