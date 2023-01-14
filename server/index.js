@@ -1,48 +1,51 @@
-const http = require('http');
+const JSZip = require('jszip');
+const zip = new JSZip();
 const fs = require('fs');
 const express = require("express");
-const app = express()
-const port = process.env.PORT || 3000
-
-function reName() {
-    fs.rename('./a.pdf', 'English_Book.pdf', err => {
-        if (err) {
-            console.error(err)
-            return
-        }
-        console.log('success!')
-    })
-}
-
-// fs.open('./name/abdullah.txt', (err, fd) => {
-//     if (err) {
-//         console.error(err)
-//         return
-//     }
-// })
-
-// try {
-//     const fd = fs.openSync('./English_Book.pdf', 'r');
-//     console.log(fd)
-// } catch (err) {
-//     console.error(err)
-// }
-
-// try {
-//     const stats = fs.statSync('./English_Book.pdf');
-//     console.log(stats)
-// } catch (err) {
-//     console.error(err)
-// }
-
-// const notes = './createHttp.js'
-
-// console.log(path.basename(notes, path.extname(notes)) //notes
-// )
+const cors = require('cors');
+const app = express();
+var bodyParser = require('body-parser');
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+const port = process.env.PORT || 4000
+app.use(cors());
+app.use(express.json());
+app.use(express.static("outputFile"));
+app.use(express.urlencoded({ extended: false }));
 
 
-const createdFile = async (html,css) => {
-    await fs.writeFile(`./outputFile/index.html`, html, function (err) {
+app.get('/', (req, res) => {
+    res.send('hlloe')
+})
+app.post('/getFile', async (req, res) => {
+    const { html, css,others } = req.body;
+    let htmldoc = `
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href=${others.favurl} />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content=${others.metadesc} />
+  <link rel="stylesheet" href="style.css">
+  <title>${others.sitetitle}</title>
+</head>
+
+<body>
+${html}
+</body>
+
+</html>
+    `
+    await createdFile(htmldoc, css)
+    await createdZip(htmldoc,css)
+})
+
+
+const createdFile = async (html, css) => {
+    await fs.writeFile(`./outputFile/index.html`,html, function (err) {
         if (err) throw err;
         console.log('Saved!');
     });
@@ -52,49 +55,21 @@ const createdFile = async (html,css) => {
     });
 }
 
-//createdFile("abul");
+const createdZip = async (html, css) => {
+    try {
+        await zip.file("index.html", html);
+        await zip.file("style.css", css);
 
-// const updatedTextByName = (value, text) => {
-//     fs.appendFile(`./name/${value}.txt`, text, function (err) {
-//         if (err) throw err;
-//         console.log('Updated!');
-//     });
-// }
+        await zip.generateNodeStream({ type: 'nodebuffer', streamFiles: true })
+            .pipe(fs.createWriteStream(`./outputFile/output.zip`))
+            .on('finish', function () {
+                console.log("output.zip written.");
+            });
 
-// updatedTextByName("rayhan", "rayhan's text is updated now!");
-
-// const removedFile = (fname) => {
-//     fs.unlink(`./name/${fname}.txt`, function (err) {
-//         if (err) throw err;
-//         console.log('File deleted!');
-//     });
-// }
-// removedFile("abul");
-
-// const EventEmitter = require('events')
-// const door = new EventEmitter()
-// door.addListener("open", () => {
-//   console.log("reloading!")
-// })
-
-// console.log(door.eventNames())
-
-// event handler
-
-// var rs = fs.createReadStream('./name/abdullah.txt');
-// rs.on('open', function () {
-//     console.log('The file is open');
-// })
-
-
-
-//read frontend api url
-
-// var adr = `http://localhost:8080/api/key=${`g5$%^&*(UHGG4ytfgy5$%^)`}`;
-// var q = url.parse(adr, true);
-
-// console.log(q);
-
+    } catch (err) {
+        console.error(err)
+    }
+}
 
 app.listen(port, () => {
     console.log(`Server running at port ${port}`)
