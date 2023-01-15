@@ -1,9 +1,9 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SlScreenDesktop, SlScreenTablet } from 'react-icons/sl';
 import { CiMobile3 } from 'react-icons/ci';
 import { IoIosTabletLandscape } from 'react-icons/io';
 import { RiSave3Line, RiCodeSSlashLine, RiDownload2Line } from 'react-icons/ri';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { BsFillEyeFill, BsLaptop } from 'react-icons/bs';
 import styles from './header.module.css';
 import { getOrientedMode, getScreenSize } from '../../../redux/action/default';
@@ -15,13 +15,15 @@ import axios from 'axios';
 
 const Header = () => {
 
+  const siteSettings = useSelector(state => state.siteSettings);
+
   const [html, setHtml] = useState("");
   const [css, setCss] = useState("");
   const [showCode, setShowCode] = useState(false);
 
   useEffect(() => {
     Prism.highlightAll();
-    
+
   }, []);
 
   const dispatch = useDispatch();
@@ -32,7 +34,7 @@ const Header = () => {
     }))
   }
 
-  const handlePostHtml = async() => {
+  const handlePostHtml = async () => {
     let document = await getDoc()
     setShowCode(!showCode);
     const elements = await document.querySelectorAll('.active');
@@ -55,21 +57,21 @@ const Header = () => {
     setHtml(htmldata);
     setCss(css_data);
 
-   await axios.post('http://localhost:4000/getFile', {
+    await axios.post('http://localhost:4000/getFile', {
       html: html,
       css: css,
-      others:{
-        metatags:"",
-        metadesc:"",
-        favurl:"",
-        sitetitle:""
+      others: {
+        metatags: siteSettings.metaTags?.map(i => i + " "),
+        metadesc: siteSettings?.metaDescription,
+        favurl: siteSettings?.favIconUrl,
+        sitetitle: siteSettings?.siteTitle 
       }
     })
-    .then((response) => {
-      console.log(response);
-    }, (error) => {
-      console.log(error);
-    });
+      .then((response) => {
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+      });
   }
 
   return (
@@ -102,9 +104,9 @@ const Header = () => {
         </button>
       </div>
       <div className={styles.button_container}>
-        <button> <BsFillEyeFill /> Preview</button>
+        <button onClick={() => { window.open("http://localhost:4000/index.html", "_blank") }}> <BsFillEyeFill /> Preview</button>
         <button onClick={() => handlePostHtml()}> <RiCodeSSlashLine /> Code</button>
-        <button> <RiDownload2Line /> Download</button>
+        <a target="_blank" href="http://localhost:4000/output.zip" download="output.zip" rel="noreferrer"><RiDownload2Line /> Download</a>
       </div>
       {
         showCode && <div className={styles.codePreview}>
@@ -116,7 +118,7 @@ const Header = () => {
             <div className={styles.code_box}>
               <h4>Html</h4>
               <div className={styles.codeContent}>
-                
+
                 <PrismCode component="pre" className="language-markup">
                   {html}
                 </PrismCode>

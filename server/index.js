@@ -28,7 +28,8 @@ app.post('/getFile', async (req, res) => {
   <link rel="icon" href=${others.favurl} />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
-  <meta name="description" content=${others.metadesc} />
+  <meta name="tag" content= "${others.metatags}"/>
+  <meta name="description" content="${others.metadesc}" />
   <link rel="stylesheet" href="style.css">
   <title>${others.sitetitle}</title>
 </head>

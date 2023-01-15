@@ -22,7 +22,7 @@ const Image = () => {
   return (
     <div>
       <h6>Image add</h6>
-      <img src={imageurl} alt="" srcset="" />
+      <img height={"150px"} src={imageurl} alt="" srcset="" />
       <input type="file" name="avatar" accept="image/png, image/jpeg,image/webp" onChange={imageChange} />
     </div>
   )

@@ -5,6 +5,7 @@ import { UpdatedCssAppend } from './../../../../../utils/updateAndAppendCss';
 const ColorBackground = () => {
     const style = useSelector(state => state.styleFields);
     const handleChange = (e) => {
+        console.log("time")
         let cssProperty = { [e.target.name]: e.target.value };
         UpdatedCssAppend(cssProperty, style);
     }

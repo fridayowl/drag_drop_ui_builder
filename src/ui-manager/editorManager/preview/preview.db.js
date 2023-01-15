@@ -46,60 +46,67 @@ body {
 }
 </style>
     <style title="preview_css">
-    
-        .container {
-            width: 100%;
-            margin: 0 auto;
-        }
-
+    body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      .container {
+        width: 100%;
+        margin: 0 auto;
+      }
+      
+      .row {
+        display: flex;
+      }
+      
+      .col-1 {
+        width: 100%;
+        min-height: 80px;
+      }
+      
+      .col-2 {
+        width: 50%;
+        min-height: 80px;
+      }
+      
+      .col-3 {
+        width: 33%;
+        min-height: 80px;
+      }
+      
+      .col-4 {
+        width: 25%;
+        min-height: 80px;
+      }
+      
+      .col-6 {
+        min-height: 80px;
+      }
+      
+      img {
+        width: 100%;
+        height: auto;
+      }
+      
+      @media (max-width:1024px) {}
+      
+      @media (max-width:768px) {}
+      
+      @media (max-width:425px) {
         .row {
-            display: flex;
-            justify-content: space-between;
+          flex-wrap: wrap;
         }
-
-        .col-1 {
-            width: 100%;
-            min-height: 80px;
-        }
-
-        .col-2 {
-            width: 50%;
-            min-height: 80px;
-        }
-
-        .col-3 {
-            width: 25%;
-            min-height: 80px;
-        }
-
-        .col-4 {
-            width: 25%;
-            min-height: 80px;
-        }
-
+      
+        .col-1,
+        .col-2,
+        .col-3,
+        .col-4,
         .col-6 {
-            width: 17%;
-            min-height: 80px;
+          width: 100%;
         }
-
-        img {
-            width: 100%;
-            height: auto;
-        }
-        @media (max-width:1024px) {
- 
-        }
-        @media (max-width:768px) {
-        }
-
-        @media (max-width:425px) {
-            .row {
-                flex-wrap: wrap;
-            }
-            .col-1 ,.col-2,.col-3, .col-4,.col-6 {
-                width: 100%;
-            }
-        }
+      }
     </style>
 </head>
 
