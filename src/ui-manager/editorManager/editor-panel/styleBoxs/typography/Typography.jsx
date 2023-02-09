@@ -3,13 +3,15 @@ import styles from './style.module.css';
 import { useSelector } from 'react-redux';
 import db from './db.json';
 import { UpdatedCssAppend } from '../../../../../utils/updateAndAppendCss';
+import { handlePostHtml } from '../../../../../services/api';
 
 const Typography = () => {
-
+    const siteSettings = useSelector(state => state.siteSettings);
     const style = useSelector(state => state.styleFields);
     const handleChange = (e) => {
         let cssProperty = { [e.target.name]: e.target.value };
         UpdatedCssAppend(cssProperty, style);
+        handlePostHtml(siteSettings);
     }
     return (
         <details open={true}>
@@ -44,7 +46,7 @@ const Typography = () => {
                             <div className={styles.edit_box}>
                                 <h6>{title}</h6>
                                 <div className={styles.edit_box_content}>
-                                    <input name={name} type="text" onChange={handleChange} />
+                                    <input name={name} type="text" onChange={handleChange} onBlur={()=>handlePostHtml(siteSettings)}/>
                                     <span>{unitName}</span>
                                 </div>
                             </div>

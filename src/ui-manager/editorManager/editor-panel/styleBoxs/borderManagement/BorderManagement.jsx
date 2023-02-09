@@ -1,12 +1,16 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 import { UpdatedCssAppend } from './../../../../../utils/updateAndAppendCss';
+import { handlePostHtml } from '../../../../../services/api';
 
 const BorderManagement = () => {
+    const siteSettings = useSelector(state => state.siteSettings);
+
     const style = useSelector(state => state.styleFields);
     const handleChange = (e) => {
         let cssProperty = { [e.target.name]: e.target.value };
         UpdatedCssAppend(cssProperty, style);
+        handlePostHtml(siteSettings);
     }
     return (
         <details open={false}>

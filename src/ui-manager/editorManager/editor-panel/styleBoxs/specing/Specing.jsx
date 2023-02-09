@@ -1,13 +1,13 @@
 import React from 'react';
 import margin from './margin.json';
-import padding from './margin.json';
-
+import padding from './padding.json';
+import { handlePostHtml } from '../../../../../services/api';
 import styles from './specing.module.css';
 import { UpdatedCssAppend } from '../../../../../utils/updateAndAppendCss';
 import { useSelector } from 'react-redux';
 
 const Specing = () => {
-
+    const siteSettings = useSelector(state => state.siteSettings);
     const style = useSelector(state => state.styleFields);
     const handleChange = (e) => {
         let cssProperty = { [e.target.name]: e.target.value };
@@ -24,7 +24,7 @@ const Specing = () => {
                             <div className={styles.edit_box}>
                                 <h6>{title}</h6>
                                 <div className={styles.edit_box_content}>
-                                    <input name={name} type="text" onChange={handleChange} />
+                                    <input name={name} type="text" onChange={handleChange} onBlur={()=>handlePostHtml(siteSettings)}/>
                                     <span>{unitName}</span>
                                 </div>
                             </div>
@@ -40,7 +40,7 @@ const Specing = () => {
                             <div className={styles.edit_box}>
                                 <h6>{title}</h6>
                                 <div className={styles.edit_box_content}>
-                                    <input name={name} type="text" onChange={handleChange} />
+                                    <input name={name} type="text" onChange={handleChange} onBlur={()=>handlePostHtml(siteSettings)}/>
                                     <span>{unitName}</span>
                                 </div>
                             </div>

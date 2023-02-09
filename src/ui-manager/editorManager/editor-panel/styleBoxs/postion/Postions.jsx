@@ -8,6 +8,7 @@ const Postions = () => {
   const handleChange = (e) => {
     let cssProperty = { [e.target.name]: e.target.value };
     UpdatedCssAppend(cssProperty, style);
+
   }
   return (
     <details open={true}>

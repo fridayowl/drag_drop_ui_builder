@@ -6,7 +6,7 @@ let pxUnit = ["margin-top", "margin-bottom", "margin-left", "margin-right", "pad
 export const UpdatedCssAppend = (property, selector) => {
     let document = getDoc();
     let s_Sheets = document.styleSheets[1];
-    console.log(s_Sheets.cssRules[11].conditionText)
+    //console.log(s_Sheets.cssRules[11].conditionText);
     let propertyName = Object.keys(property);
     let propertyValue = Object.values(property);
     let selectorText1 = `#${selector.styleId} .${selector.styleClassName}`;

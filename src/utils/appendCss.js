@@ -10,16 +10,3 @@ export const appendCss = (pr_id, elm, type) => {
   styleSheets.insertRule(selector, styleSheets.length);
 
 }
-
-
-/**
- *   var styleStr = "";
-  for(var i in cssjson){
-      styleStr += i + " {\n"
-      for(var j in cssjson[i]){
-          styleStr += "\t" + j + ":" + cssjson[i][j] + ";\n"
-      }
-      styleStr += "}\n"
-      console.log(styleStr)
-  }
- */

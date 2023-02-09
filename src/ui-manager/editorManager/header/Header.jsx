@@ -7,11 +7,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BsFillEyeFill, BsLaptop } from 'react-icons/bs';
 import styles from './header.module.css';
 import { getOrientedMode, getScreenSize } from '../../../redux/action/default';
-import { getDoc } from '../../../utils/getDocument';
 import Prism from "prismjs";
 import "prismjs/themes/prism-tomorrow.css";
 import { PrismCode } from 'react-prism';
-import axios from 'axios';
+import { handlePostHtml } from '../../../services/api';
+import { getDoc } from '../../../utils/getDocument';
 
 const Header = () => {
 
@@ -23,8 +23,22 @@ const Header = () => {
 
   useEffect(() => {
     Prism.highlightAll();
-
   }, []);
+
+  const handleShowCode = () => {
+    let document = getDoc();
+    let htmlDoc = document.getElementById("body").innerHTML.toString();
+    let s_Sheets = document.styleSheets[1];
+    var css_data = '';
+    for (const s in s_Sheets.cssRules) {
+      if (s_Sheets.cssRules[s].cssText !== undefined)
+        css_data +=
+          s_Sheets.cssRules[s].cssText + "\n"
+          ;
+    }
+    setHtml(htmlDoc);
+    setCss(css_data);
+  }
 
   const dispatch = useDispatch();
   const screenSize = (width, height) => {
@@ -34,45 +48,22 @@ const Header = () => {
     }))
   }
 
-  const handlePostHtml = async () => {
-    let document = await getDoc()
-    setShowCode(!showCode);
-    const elements = await document.querySelectorAll('.active');
-    elements.forEach((element) => {
-      element.classList.remove('active');
-    });
-    let htmlDoc = await document.getElementById("body").innerHTML.toString();
-    let s_Sheets = await document.styleSheets[1];
-    var css_data = '';
-    for (const s in s_Sheets.cssRules) {
-      if (s_Sheets.cssRules[s].cssText !== undefined)
-        css_data +=
-          s_Sheets.cssRules[s].cssText + "\n"
-          ;
-    }
-    function addSpace(str) {
-      return str.split(">").join('>\n');
-    }
-    const htmldata = await addSpace(htmlDoc)
-    setHtml(htmldata);
-    setCss(css_data);
 
-    await axios.post('http://localhost:4000/getFile', {
-      html: html,
-      css: css,
-      others: {
-        metatags: siteSettings.metaTags?.map(i => i + " "),
-        metadesc: siteSettings?.metaDescription,
-        favurl: siteSettings?.favIconUrl,
-        sitetitle: siteSettings?.siteTitle 
-      }
-    })
-      .then((response) => {
-        console.log(response);
-      }, (error) => {
-        console.log(error);
+  useEffect(() => {
+    const iFrame = document.getElementById("dropframe");
+    const iFrameWindow = iFrame.contentWindow;
+    iFrame.addEventListener("load", function (e) {
+      iFrameWindow.document.getElementById("body").addEventListener("DOMSubtreeModified", (e) => {
+        handlePostHtml(siteSettings);
+        handleShowCode();
       });
-  }
+      iFrameWindow.document.getElementById("body").addEventListener("input", function () {
+        handlePostHtml(siteSettings);
+        handleShowCode();
+      });
+    });
+  },)
+
 
   return (
     <header className={styles.editor_header}>
@@ -105,7 +96,7 @@ const Header = () => {
       </div>
       <div className={styles.button_container}>
         <button onClick={() => { window.open("http://localhost:4000/index.html", "_blank") }}> <BsFillEyeFill /> Preview</button>
-        <button onClick={() => handlePostHtml()}> <RiCodeSSlashLine /> Code</button>
+        <button onClick={() => setShowCode(!showCode)}> <RiCodeSSlashLine /> Code</button>
         <a target="_blank" href="http://localhost:4000/output.zip" download="output.zip" rel="noreferrer"><RiDownload2Line /> Download</a>
       </div>
       {

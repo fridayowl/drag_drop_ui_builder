@@ -3,12 +3,16 @@ import styles from './alignment.module.css';
 import { useSelector } from 'react-redux';
 import { UpdatedCssAppend } from './../../../../../utils/updateAndAppendCss';
 import { FaAlignLeft, FaAlignCenter, FaAlignRight, FaAlignJustify } from 'react-icons/fa';
+import { handlePostHtml } from '../../../../../services/api';
 
 const AlignMents = () => {
+    const siteSettings = useSelector(state => state.siteSettings);
+
     const style = useSelector(state => state.styleFields);
     const handleChange = (e) => {
         let cssProperty = { [e.target.name]: e.target.value };
         UpdatedCssAppend(cssProperty, style);
+        handlePostHtml(siteSettings);
     }
     return (
         <details open={true}>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Shadow = () => {
+const Shadow = ({handleUpdated}) => {
   return (
     <details open={true}>
             <summary><strong>Box Shadow</strong></summary>

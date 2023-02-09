@@ -5,7 +5,7 @@ import { appendCss } from './../../../utils/appendCss';
 import { useDispatch, useSelector } from 'react-redux';
 import { getClassName, getId, getOpenEditorData } from './../../../redux/action/stylefield';
 import { doc } from './preview.db';
-import { getTagContent,getImageUrl, getTagName } from '../../../redux/action/content';
+import { getTagContent, getImageUrl, getTagName } from '../../../redux/action/content';
 import { getDoc } from '../../../utils/getDocument';
 
 const HtmlPreview = () => {
@@ -76,6 +76,7 @@ const HtmlPreview = () => {
       iFrameWindow.document.body.addEventListener('dragenter', function (event) {
         onDragEnter(event)
       });
+      
       iFrameWindow.document.body.addEventListener('dragover', function (event) {
         event.preventDefault();
       });
@@ -96,27 +97,9 @@ const HtmlPreview = () => {
       });
     });
 
-    return () => {
-      iFrameWindow.document.body.removeEventListener('dragenter', function (event) {
-        onDragEnter(event)
-      });
-      iFrameWindow.document.body.removeEventListener('dragleave', function (event) {
-        handledragOut(event)
-      });
-      iFrameWindow.document.body.removeEventListener('click', function (event) {
-        OpenStyleEditor(event)
-      });
-      iFrameWindow.document.body.removeEventListener('drop', function (event) {
-        getAndSetData(event)
-      });
-      iFrameWindow.document.body.removeEventListener('mouseout', function (event) {
-        handleMouseOut(event)
-      });
-      iFrameWindow.document.body.removeEventListener('mouseover', function (event) {
-        handleMouseOver(event)
-      });
-    }
+    
   })
+
 
   return (
 

@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 
 
 app.get('/', (req, res) => {
-    res.send('hlloe')
+    res.send('hi')
 })
 app.post('/getFile', async (req, res) => {
     const { html, css,others } = req.body;
